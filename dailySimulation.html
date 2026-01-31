@@ -8,12 +8,40 @@
 
   <h1>My Simulated Day</h1>
   <div id="output" style="margin-top: 40px; font-size: 1.5rem;"></div>
-
+  <div id="mood" style="margin-top: 40px; font-size: 1.5rem;"></div>
   <script>
     const output = document.getElementById("output");
-    
-    # ADD CODE HERE
-
+    const mood = document.getElementById("mood");
+    const activities = [
+    {description:"Taking shower + brushing teeth", time: 240, mood:"😴"},
+    {description:"Eating breakfast and packing bag", time: 240, mood:"😋"},
+    {description:"Taking the bus to school", time: 1140},
+    {description:"Chilling at school", time: 180, mood:"😀"},
+    {description:"Period one", time: 5000, mood:"😒"},
+    {description:"Period two", time: 5000, mood:"😁"},
+    {description:"Period three", time: 5000},
+    {description:"Period four", time: 5000},
+    {description:"Lunch with the gang", time: 3700, mood:"😂"},
+    {description:"Period five", time: 5000, mood:"😪"},
+    {description:"Track Practice", time: 10000, mood:"🏃‍♂️"},
+    {description:"Taking the bus home", time: 1140, mood:"🤕"},
+    {description:"Taking shower", time: 240},
+    {description:"Studying", time: 6000},
+    {description:"Homework", time: 6000}
+    ];
+    async function runThroughDay(dayActivities){
+      for (const activity of dayActivities){
+        output.textContent = activity.description;
+        if (activity.mood){
+          mood.textContent = activity.mood;
+        }
+        else{
+          mood.textContent = "";
+        }
+        await new Promise(resolve => setTimeout(resolve,activity.time));
+      }
+    }
+    runThroughDay(activities);
   </script>
 
 </body>
